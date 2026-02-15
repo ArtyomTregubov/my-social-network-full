@@ -1,0 +1,16 @@
+{
+  "name": "user-api",
+  "version": "1.0.0",
+  "description": "JSON Server API для пользователей",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000",
+    "start:delay": "json-server --watch db.json --port 3000 --delay 1500",
+    "start:auth": "json-server --watch db.json --port 3000 --middlewares ./auth-middleware.js",
+    "start:https": "json-server --watch db.json --ssl --key key.pem --cert cert.pem --port 3000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
