@@ -1,12 +1,13 @@
-import { Footer } from "./Footer"
-import { Header } from "./Header"
-import { Main } from "./Main"
-import { ProfileModal } from "./ProfileModal"
-import { useEffect, useState } from "react"
-import { PlaceModal } from "./PlaceModal"
-import { AvatarModal } from "./AvatarModal"
-import { QestionModal } from "./QestionModal"
-import { ImageModal } from "./ImageModal"
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { Main } from "./Main";
+import { ProfileModal } from "./ProfileModal";
+import { useEffect, useState } from "react";
+import { PlaceModal } from "./PlaceModal";
+import { AvatarModal } from "./AvatarModal";
+import { QestionModal } from "./QestionModal";
+import { ImageModal } from "./ImageModal";
+import { CurrentUserContext } from "../contexts/CurrenrtUserContext";
 
 export interface User {
     id: number;
@@ -16,9 +17,10 @@ export interface User {
 } 
 
 export type Card = {
-    id: string;
+    id: number;
     image: string;
     description: string;
+    owner: { id: number };
 }
 
 function App() {
@@ -100,41 +102,40 @@ function App() {
     }
 
   return (
-    <>
-    <Header
-     handleEditPlaceModalOpen={handleEditPlaceModalOpen}
-     />
-    <Main
-     user={user}
-     handleQestionModalOpen={handleQestionModalOpen}
-     gallaryCards={gallaryCards}
-     handleEditProfileModalOpen={handleEditProfileModalOpen}
-     handleEditAvatarModalOpen={handleEditAvatarModalOpen}
-     onCardClick={handleCardClick}
-     />
-    <Footer />
-    <ProfileModal
-     isEditProfileModalOpen={isEditProfileModalOpen}
-     setEditProfileModalOpen={setEditProfileModalOpen}
-    />
-     <PlaceModal
-     isEditPlaceModalOpen={isEditPlaceModalOpen}
-     setEditPlaceModalOpen={setEditPlaceModalOpen}
-    />
-    <AvatarModal
-     isEditAvatarModalOpen={isEditAvatarModalOpen}
-     setEditAvatarModalOpen={setEditAvatarModalOpen}
-    />
-    <QestionModal
-     isQestionModalOpen={isQestionModalOpen}
-     setQestionModalOpen={setQestionModalOpen}
-    />
-     <ImageModal
-      card={isSelectedCard}
-      isImageModalOpen={isImageModalOpen}
-      setImageModalOpen={setImageModalOpen}
-      />
-    </>
+    <CurrentUserContext.Provider value={user}>
+        <Header
+        handleEditPlaceModalOpen={handleEditPlaceModalOpen}
+        />
+        <Main
+        handleQestionModalOpen={handleQestionModalOpen}
+        gallaryCards={gallaryCards}
+        handleEditProfileModalOpen={handleEditProfileModalOpen}
+        handleEditAvatarModalOpen={handleEditAvatarModalOpen}
+        onCardClick={handleCardClick}
+        />
+        <Footer />
+        <ProfileModal
+        isEditProfileModalOpen={isEditProfileModalOpen}
+        setEditProfileModalOpen={setEditProfileModalOpen}
+        />
+        <PlaceModal
+        isEditPlaceModalOpen={isEditPlaceModalOpen}
+        setEditPlaceModalOpen={setEditPlaceModalOpen}
+        />
+        <AvatarModal
+        isEditAvatarModalOpen={isEditAvatarModalOpen}
+        setEditAvatarModalOpen={setEditAvatarModalOpen}
+        />
+        <QestionModal
+        isQestionModalOpen={isQestionModalOpen}
+        setQestionModalOpen={setQestionModalOpen}
+        />
+        <ImageModal
+        card={isSelectedCard}
+        isImageModalOpen={isImageModalOpen}
+        setImageModalOpen={setImageModalOpen}
+        />
+    </CurrentUserContext.Provider>
   )
 }
 

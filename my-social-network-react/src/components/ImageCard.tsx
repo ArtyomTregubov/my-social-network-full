@@ -1,5 +1,6 @@
-import type { FC } from "react";
+import { useContext, type FC } from "react";
 import type { Card } from "./App";
+import { CurrentUserContext } from "../contexts/CurrenrtUserContext";
 
 export type CardProps = { 
     card: Card;
@@ -8,6 +9,10 @@ export type CardProps = {
 }
 
 export const ImageCard: FC<CardProps> = ({card, handleQestionModalOpen, onCardClick}) => {
+    const user = useContext(CurrentUserContext); 
+    const isOwn = card.owner.id === user?.id;
+    console.log(typeof card.owner.id, typeof user?.id);
+    
     const handleClick = () => {
         onCardClick(card)
     }
@@ -19,9 +24,9 @@ export const ImageCard: FC<CardProps> = ({card, handleQestionModalOpen, onCardCl
                     <i className="fas fa-heart"></i>
                 </button>
                 <span className="gallery-card-description">{card.description}</span>
-                <button onClick={handleQestionModalOpen} className="delete-button">
+                {isOwn && <button onClick={handleQestionModalOpen} className="delete-button">
                     <i className="fas fa-trash"></i>
-                </button>
+                </button>}
             </div>
         </div>
     )

@@ -1,13 +1,13 @@
-import type { FC } from "react";
-import type { User } from "./App";
+import { useContext, type FC } from "react";
+import { CurrentUserContext } from "../contexts/CurrenrtUserContext";
 
 type ProfileSectionProps = {
     handleEditProfileModalOpen: () => void;
     handleEditAvatarModalOpen: () => void;
-    user: User | null
 }
 
-export const ProfileSection: FC<ProfileSectionProps> = ({ user, handleEditProfileModalOpen, handleEditAvatarModalOpen}) => {
+export const ProfileSection: FC<ProfileSectionProps> = ({ handleEditProfileModalOpen, handleEditAvatarModalOpen}) => {
+    const user = useContext(CurrentUserContext);
     return (
             <section className="profile-section">
                 <div className="profile-picture-container">
