@@ -44,7 +44,7 @@ function App() {
                     }
     
                 const data: User = await response.json();
-                setUser(data);
+                setUser({...data, id: Number(data.id)});
             
             } catch (error) {
                 console.error('Ошибка загрузки:', error);

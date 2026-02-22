@@ -11,7 +11,6 @@ export type CardProps = {
 export const ImageCard: FC<CardProps> = ({card, handleQestionModalOpen, onCardClick}) => {
     const user = useContext(CurrentUserContext); 
     const isOwn = card.owner.id === user?.id;
-    console.log(typeof card.owner.id, typeof user?.id);
     
     const handleClick = () => {
         onCardClick(card)
