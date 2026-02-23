@@ -8,23 +8,10 @@ import { AvatarModal } from "./AvatarModal";
 import { QestionModal } from "./QestionModal";
 import { ImageModal } from "./ImageModal";
 import { CurrentUserContext } from "../contexts/CurrenrtUserContext";
-
-export interface User {
-    id: number;
-    userName: string;
-    userDescription: string;
-    userAvatar: string;
-} 
-
-export type Card = {
-    id: number;
-    image: string;
-    description: string;
-    owner: { id: number };
-}
+import type { Card, User } from "../utils/api.types";
+import api from "../utils/api";
 
 function App() {
-
     const [initialCards, setInitialCards] = useState<Card[]>([]);
     const [isSelectedCard, setSelectedCard] = useState<Card | null>(null);
     const [isImageModalOpen, setImageModalOpen] = useState<boolean>(false);
@@ -35,48 +22,16 @@ function App() {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try { 
-                const response = await fetch('http://localhost:3000/users/1');
-    
-                    if(!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-    
-                const data: User = await response.json();
-                setUser({...data, id: Number(data.id)});
-            
-            } catch (error) {
-                console.error('Ошибка загрузки:', error);
-            } finally {
-                console.log('final');
-            }
-        }
-    
-        fetchUser();
+        api.getUsers(1)
+        .then(user => setUser({...user, id: Number(user.id)}))
+        .catch(error => console.error('Ошибка загрузки:', error));
     }, []);
 
     useEffect(() => {
-        const fetchCards = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/cards')
-
-                if(!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data: Card[] = await response.json();
-                setInitialCards(data);
-
-            } catch (error) {
-                console.error('Ошибка загрузки:', error);
-            } finally {
-                console.log('final');
-            }
-        }
-
-        fetchCards();
-    }, []);
+        api.getCards()
+        .then(cards => setInitialCards(cards))
+        .catch(error => console.error('Ошибка загрузки:', error));
+    }, [])
 
     const gallaryCards = [...initialCards]
 

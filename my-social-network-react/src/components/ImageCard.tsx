@@ -11,9 +11,13 @@ export type CardProps = {
 export const ImageCard: FC<CardProps> = ({card, handleQestionModalOpen, onCardClick}) => {
     const user = useContext(CurrentUserContext); 
     const isOwn = card.owner.id === user?.id;
+    const isLiked = card.likes.some((like) => {
+        return like.id === user?.id;
+    });
+    const cardLikeButtonClassName = (`like-button ${isLiked && 'like-button.active'}`);
     
     const handleClick = () => {
-        onCardClick(card)
+        onCardClick(card);
     }
     return (
         <div className="gallery-item">

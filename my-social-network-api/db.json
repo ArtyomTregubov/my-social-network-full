@@ -12,37 +12,43 @@
           "id": 1,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       },
       {
           "id": 2,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       },
       {
           "id": 3,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       },
       {
           "id": 4,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       },
       {
           "id": 5,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       },
       {
           "id": 6,
           "image": "./images/motya_photo.jpg",
           "description": "Моя фотография",
-          "owner": { "id": 1}
+          "owner": { "id": 1},
+          "likes": [{ "id": 1 }, { "id": 2 }]
       }
      
   ]
