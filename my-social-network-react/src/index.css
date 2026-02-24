@@ -237,9 +237,10 @@ i {
     border: 0;
 }
 
-.like-button.active {
+.like-button-active {
     background-color: transparent;
     color: #ff4757;
+    border: 0;
 }
 
 .gallery-item:hover {
@@ -247,8 +248,8 @@ i {
     background: rgba(255, 255, 255, 0.9);
 }
 
-.like-button:hover,
-.gallery-item:hover .like-button:hover {
+
+.gallery-item:hover {
     color: #ff4757;
 }
 

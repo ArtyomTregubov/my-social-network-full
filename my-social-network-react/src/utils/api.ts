@@ -28,27 +28,12 @@ class Api {
         }).then(res => this._checkResponse<Card[]>(res));
     }
 
-    public addLike(cardId: number): Promise<Card> {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: 'PUT',
-            headers: this._headers   
+    public setCardLikes(cardId: number, likes: Array<{ id: number }>): Promise<Card> {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({ likes })
         }).then(res => this._checkResponse<Card>(res));
-    }
-    
-    public deleteLike(cardId: number): Promise<Card> {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: 'DELETE',
-            headers: this._headers   
-        }).then(res => this._checkResponse<Card>(res))
-    }
-    
-    public changeLikeCardStatus(cardId: string, isLiked: boolean): Promise<Card> {
-        const method = isLiked ? 'PUT' : 'DELETE';
-
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: method,
-            headers: this._headers   
-        }).then(res => this._checkResponse<Card>(res))
     }
 }
 

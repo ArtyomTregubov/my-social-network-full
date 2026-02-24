@@ -10,7 +10,7 @@ export type Card = {
     image: string;
     description: string;
     owner: { id: number };
-    likes: [{id: number}]
+    likes:  Array<{id: number}>;
 }
 
 export interface ApiConfig {

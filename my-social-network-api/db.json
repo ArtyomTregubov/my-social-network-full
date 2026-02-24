@@ -1,55 +1,96 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "userName": "Трегубов Артём",
-        "userDescription": "Бодибилдер",
-        "userAvatar": "https://avatars.mds.yandex.net/i?id=79f0cd809e442530fa4260bdefdbdf3ada4db0eb-4568535-images-thumbs&n=13"
-      }
-    ],
-    "cards": [
-      {
-          "id": 1,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
+  "users": [
+    {
+      "id": "1",
+      "userName": "Трегубов Артём",
+      "userDescription": "Бодибилдер",
+      "userAvatar": "https://avatars.mds.yandex.net/i?id=79f0cd809e442530fa4260bdefdbdf3ada4db0eb-4568535-images-thumbs&n=13"
+    }
+  ],
+  "cards": [
+    {
+      "id": "1",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
       },
-      {
-          "id": 2,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
+      "likes": [
+        {
+          "id": 2
+        },
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
       },
-      {
-          "id": 3,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
+      "likes": [
+        {
+          "id": 2
+        },
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
       },
-      {
-          "id": 4,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
+      "likes": [
+        {
+          "id": 2
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
       },
-      {
-          "id": 5,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
+      "likes": [
+        {
+          "id": 2
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
       },
-      {
-          "id": 6,
-          "image": "./images/motya_photo.jpg",
-          "description": "Моя фотография",
-          "owner": { "id": 1},
-          "likes": [{ "id": 1 }, { "id": 2 }]
-      }
-     
+      "likes": [
+        {
+          "id": 2
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "image": "./images/motya_photo.jpg",
+      "description": "Моя фотография",
+      "owner": {
+        "id": 1
+      },
+      "likes": [
+        {
+          "id": 2
+        }
+      ]
+    }
   ]
-  }
+}

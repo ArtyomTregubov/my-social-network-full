@@ -1,17 +1,26 @@
 import type { FC } from "react";
 import { GallerySection } from "./GallerySection"
 import { ProfileSection } from "./ProfileSection"
-import type { Card } from "./App";
+import type { Card } from "../utils/api.types";
+
 
 type MainProps = {
     handleEditProfileModalOpen: () => void;
     handleEditAvatarModalOpen: () => void;
     handleQestionModalOpen: () => void;
     onCardClick: (card: Card) => void;
+    onCardLike: (card: Card) => void;
     gallaryCards: Card[]
 }
 
-export const Main: FC<MainProps> = ({ gallaryCards, handleEditProfileModalOpen, handleEditAvatarModalOpen, handleQestionModalOpen, onCardClick }) => {
+export const Main: FC<MainProps> = ({
+     gallaryCards, 
+     handleEditProfileModalOpen, 
+     handleEditAvatarModalOpen,
+     handleQestionModalOpen, 
+     onCardClick, 
+     onCardLike 
+    }) => {
     return (
         <main className="main-content">
             <ProfileSection
@@ -22,6 +31,7 @@ export const Main: FC<MainProps> = ({ gallaryCards, handleEditProfileModalOpen, 
                 handleQestionModalOpen={handleQestionModalOpen}
                 gallaryCards={gallaryCards}
                 onCardClick={onCardClick}
+                onCardLike={onCardLike}
              /> 
         </main>
     )

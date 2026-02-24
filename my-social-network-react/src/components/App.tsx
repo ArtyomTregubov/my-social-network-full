@@ -56,6 +56,24 @@ function App() {
         setImageModalOpen(true);
     }
 
+    const handleCardLike = (card: Card) => {
+        if (!user) {
+            return
+        }
+        const isLiked = card.likes.some((item) => {
+            return item.id === user.id
+        });
+        const newLikes = isLiked 
+        ? card.likes.filter((like) => like.id !== user.id)
+        : [...card.likes, { id: user.id }];
+
+        api.setCardLikes(card.id, newLikes)
+        .then((newCard) => {
+            setInitialCards((state) => state.map((c) => c.id === card.id ? newCard : c));
+        })
+        .catch(error => console.error('Ошибка лайка:', error));
+    }
+
   return (
     <CurrentUserContext.Provider value={user}>
         <Header
@@ -67,6 +85,7 @@ function App() {
         handleEditProfileModalOpen={handleEditProfileModalOpen}
         handleEditAvatarModalOpen={handleEditAvatarModalOpen}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
         />
         <Footer />
         <ProfileModal
