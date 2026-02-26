@@ -23,6 +23,8 @@ export const PlaceModal: FC<PlaceModalProps> = ({isEditPlaceModalOpen, setEditPl
             modalState={isEditPlaceModalOpen}
             closeFunction={handleEditPlaceModalClose} 
             leftButton={'Сохранить'} 
-            rightButton={undefined}        />
+            rightButton={undefined} 
+            typeOfModal={'submit'}       
+        />
     )
 }

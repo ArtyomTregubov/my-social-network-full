@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { Card } from "./App";
+import type { Card } from "../utils/api.types";
 
 export type ImageModalProps = {
     card: Card | null;

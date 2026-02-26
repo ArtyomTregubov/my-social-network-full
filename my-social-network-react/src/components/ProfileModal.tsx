@@ -23,6 +23,8 @@ export const ProfileModal: FC<ProfileModalProps> = ({isEditProfileModalOpen, set
             modalState={isEditProfileModalOpen}
             closeFunction={handleEditProfileModalClose} 
             leftButton={'Сохранить'} 
-            rightButton={undefined}        />
+            rightButton={undefined} 
+            typeOfModal={'submit'}
+        />
     )
 }

@@ -35,6 +35,13 @@ class Api {
             body: JSON.stringify({ likes })
         }).then(res => this._checkResponse<Card>(res));
     }
+
+    public deleteCard(cardId: number): Promise<void> {
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
+            method: 'PATCH',
+            headers: this._headers
+        }).then(res => this._checkResponse<void>(res));
+    }
 }
 
 const api = new Api({

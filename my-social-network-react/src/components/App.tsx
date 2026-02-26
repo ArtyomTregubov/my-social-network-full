@@ -13,6 +13,7 @@ import api from "../utils/api";
 
 function App() {
     const [initialCards, setInitialCards] = useState<Card[]>([]);
+    const [cardToDelete, setCardToDelete] = useState<Card | null>(null);
     const [isSelectedCard, setSelectedCard] = useState<Card | null>(null);
     const [isImageModalOpen, setImageModalOpen] = useState<boolean>(false);
     const [isEditProfileModalOpen, setEditProfileModalOpen] = useState<boolean>(false);
@@ -47,7 +48,8 @@ function App() {
         setEditPlaceModalOpen(true);
     }
 
-    const handleQestionModalOpen = () => {
+    const handleQestionModalOpen = (card: Card) => {
+        setCardToDelete(card)
         setQestionModalOpen(true);
     }
 
@@ -68,10 +70,18 @@ function App() {
         : [...card.likes, { id: user.id }];
 
         api.setCardLikes(card.id, newLikes)
-        .then((newCard) => {
-            setInitialCards((state) => state.map((c) => c.id === card.id ? newCard : c));
+        .then((updatedCard) => {
+            setInitialCards((currentCards) => currentCards.map((currentCard) => currentCard.id === card.id ? updatedCard : currentCard));
         })
         .catch(error => console.error('Ошибка лайка:', error));
+    }
+
+    const handleCardDelete = (card: Card) => {
+        api.deleteCard(card.id)
+        .then(() => {
+            setInitialCards((currentCards) => currentCards.filter((currentCard) => currentCard.id !== card.id));
+        })
+        .catch(error => console.error('Ошибка удаления:', error));
     }
 
   return (
@@ -103,6 +113,8 @@ function App() {
         <QestionModal
         isQestionModalOpen={isQestionModalOpen}
         setQestionModalOpen={setQestionModalOpen}
+        onCardDelete={handleCardDelete}
+        card={cardToDelete}
         />
         <ImageModal
         card={isSelectedCard}

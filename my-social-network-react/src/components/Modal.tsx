@@ -11,9 +11,11 @@ type ModalProps = {
     modalState: boolean;
     closeFunction: () => void;
     leftButton: string; 
-    rightButton: string | undefined
+    rightButton: string | undefined;
+    actionFunction?: () => void;
+    typeOfModal: 'button' | 'submit';
 }
-export const Modal: FC<ModalProps> = ({title, topInputLabel, topInputType, topInputId, bottomInputLabel, bottomInputType, bottomInputId, modalState, closeFunction, leftButton, rightButton}) => {
+export const Modal: FC<ModalProps> = ({typeOfModal, actionFunction, title, topInputLabel, topInputType, topInputId, bottomInputLabel, bottomInputType, bottomInputId, modalState, closeFunction, leftButton, rightButton}) => {
 
 
     return (
@@ -31,8 +33,8 @@ export const Modal: FC<ModalProps> = ({title, topInputLabel, topInputType, topIn
                         <input type={bottomInputType} id={bottomInputId} className="form-input" />
                     </div>)}
                     <div className="modal-buttons">
-                        <button type="submit" className="modal-button">{leftButton}</button>
-                        { rightButton && <button type="submit" className="modal-button">{rightButton}</button>}
+                        <button type={typeOfModal} onClick={actionFunction} className="modal-button">{leftButton}</button>
+                        { rightButton && <button type={typeOfModal} className="modal-button">{rightButton}</button>}
                     </div>
                 </form>
             </div>

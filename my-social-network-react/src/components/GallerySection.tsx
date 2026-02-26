@@ -4,7 +4,7 @@ import type { Card } from "../utils/api.types";
 
 
 type GallerySectionMainProps = {
-    handleQestionModalOpen: () => void;
+    handleQestionModalOpen: (card: Card) => void;
     gallaryCards: Card[];
     onCardClick:  (card: Card) => void;
     onCardLike: (card: Card) => void;
@@ -19,7 +19,7 @@ export const GallerySection: FC<GallerySectionMainProps> = ({ gallaryCards, hand
                         <ImageCard
                          onCardClick={onCardClick}
                          onCardLike={onCardLike}
-                         handleQestionModalOpen={handleQestionModalOpen} 
+                         handleQestionModalOpen={() => handleQestionModalOpen(card)} 
                          card={card}
                          key={card.id}
                         />

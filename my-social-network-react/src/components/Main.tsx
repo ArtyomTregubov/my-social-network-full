@@ -7,7 +7,7 @@ import type { Card } from "../utils/api.types";
 type MainProps = {
     handleEditProfileModalOpen: () => void;
     handleEditAvatarModalOpen: () => void;
-    handleQestionModalOpen: () => void;
+    handleQestionModalOpen: (card: Card) => void;
     onCardClick: (card: Card) => void;
     onCardLike: (card: Card) => void;
     gallaryCards: Card[]
@@ -19,7 +19,7 @@ export const Main: FC<MainProps> = ({
      handleEditAvatarModalOpen,
      handleQestionModalOpen, 
      onCardClick, 
-     onCardLike 
+     onCardLike,
     }) => {
     return (
         <main className="main-content">

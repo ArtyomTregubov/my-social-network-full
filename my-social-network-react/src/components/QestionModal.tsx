@@ -1,14 +1,24 @@
 import type { FC } from "react";
 import { Modal } from "./Modal"
+import type { Card } from "../utils/api.types";
 
 type QestionModalProps = {
     isQestionModalOpen: boolean;
     setQestionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    onCardDelete: (card: Card) => void;
+    card: Card | null;
 }
 
-export const QestionModal: FC<QestionModalProps> = ({isQestionModalOpen, setQestionModalOpen}) => {
+export const QestionModal: FC<QestionModalProps> = ({card, onCardDelete, isQestionModalOpen, setQestionModalOpen}) => {
     const handleQestionModalClose = () => {
         setQestionModalOpen(false);
+    }
+
+    const handleDeleteClick = () => {
+        if (card) {
+            onCardDelete(card);
+        }
+        handleQestionModalClose();
     }
 
     return (
@@ -24,6 +34,8 @@ export const QestionModal: FC<QestionModalProps> = ({isQestionModalOpen, setQest
         closeFunction={handleQestionModalClose}
         leftButton={'Да'} 
         rightButton={'Нет'}
+        actionFunction={handleDeleteClick}
+        typeOfModal={'button'}
         />
     )
 }
