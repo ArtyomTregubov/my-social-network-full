@@ -84,6 +84,14 @@ function App() {
         .catch(error => console.error('Ошибка удаления:', error));
     }
 
+    const handleUpdateUser = (userId: number, userName: string, userDescription: string) => {
+        api.updateUser(userId, userName, userDescription)
+        .then((updatedUser) => {
+            setUser(updatedUser);
+        })
+        .catch(error => console.error('Ошибка обновления пользователя:', error));
+    }
+
   return (
     <CurrentUserContext.Provider value={user}>
         <Header
@@ -101,6 +109,7 @@ function App() {
         <ProfileModal
         isEditProfileModalOpen={isEditProfileModalOpen}
         setEditProfileModalOpen={setEditProfileModalOpen}
+        onUpdateUser={handleUpdateUser}
         />
         <PlaceModal
         isEditPlaceModalOpen={isEditPlaceModalOpen}

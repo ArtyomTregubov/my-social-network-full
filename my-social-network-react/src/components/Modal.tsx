@@ -14,8 +14,10 @@ type ModalProps = {
     rightButton: string | undefined;
     actionFunction?: () => void;
     typeOfModal: 'button' | 'submit';
+    topInputValue?: string;
+    bottomInputValue?: string;
 }
-export const Modal: FC<ModalProps> = ({typeOfModal, actionFunction, title, topInputLabel, topInputType, topInputId, bottomInputLabel, bottomInputType, bottomInputId, modalState, closeFunction, leftButton, rightButton}) => {
+export const Modal: FC<ModalProps> = ({bottomInputValue, topInputValue, typeOfModal, actionFunction, title, topInputLabel, topInputType, topInputId, bottomInputLabel, bottomInputType, bottomInputId, modalState, closeFunction, leftButton, rightButton}) => {
 
 
     return (
@@ -26,11 +28,11 @@ export const Modal: FC<ModalProps> = ({typeOfModal, actionFunction, title, topIn
                 <form className="modal-form" id="profileForm" noValidate>
                     { topInputId && (<div className="form-group">
                         <label htmlFor={topInputId}>{topInputLabel}</label>
-                        <input type={topInputType} id={topInputId} className="form-input" required />
+                        <input type={topInputType} id={topInputId} value={topInputValue} className="form-input" required />
                     </div>)}
                     { bottomInputId && (<div className="form-group">
                         <label htmlFor={bottomInputId}>{bottomInputLabel}</label>
-                        <input type={bottomInputType} id={bottomInputId} className="form-input" />
+                        <input type={bottomInputType} id={bottomInputId}  value={bottomInputValue} className="form-input" />
                     </div>)}
                     <div className="modal-buttons">
                         <button type={typeOfModal} onClick={actionFunction} className="modal-button">{leftButton}</button>
