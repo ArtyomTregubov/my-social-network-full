@@ -30,6 +30,14 @@ class Api {
         }).then(res => this._checkResponse<User>(res));
     }
 
+    public updateAvatarUser(userId: number, userAvatar: string): Promise<User> {
+        return fetch(`${this._baseUrl}/users/${userId}`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({ userAvatar })
+        }).then(res => this._checkResponse<User>(res));
+    }
+
     public getCards(): Promise<Card[]> {
         return fetch (`${this._baseUrl}/cards`, {
             headers: this._headers

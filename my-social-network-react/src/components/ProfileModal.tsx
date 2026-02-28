@@ -16,7 +16,7 @@ export const ProfileModal: FC<ProfileModalProps> = ({onUpdateUser, isEditProfile
     useEffect(() => {
         setName(currentUser?.userName);
         setDescription(currentUser?.userDescription)
-    })
+    }, [isEditProfileModalOpen, currentUser?.userName, currentUser?.userDescription])
 
     const handleEditProfileModalClose = () => {
         setEditProfileModalOpen(false);
@@ -25,7 +25,8 @@ export const ProfileModal: FC<ProfileModalProps> = ({onUpdateUser, isEditProfile
     const handleUserDataSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(currentUser && name && description) {
-            onUpdateUser(currentUser.id, name, description)
+            onUpdateUser(currentUser.id, name, description);
+            setEditProfileModalOpen(false);
         }
     }
     return (
@@ -41,9 +42,12 @@ export const ProfileModal: FC<ProfileModalProps> = ({onUpdateUser, isEditProfile
             closeFunction={handleEditProfileModalClose} 
             leftButton={'Сохранить'} 
             rightButton={undefined} 
-            typeOfModal={'submit'}
+            submitButton={true}
+            submitFunction={handleUserDataSubmit}
             topInputValue={name}
             bottomInputValue={description}
+            onTopInputChange={setName}
+            onBottomInputChange={setDescription}
         />
     )
 }

@@ -92,6 +92,14 @@ function App() {
         .catch(error => console.error('Ошибка обновления пользователя:', error));
     }
 
+    const handleUpdateAvatarUser = (userId: number, userAvatar: string) => {
+        api.updateAvatarUser(userId, userAvatar)
+        .then((updatedUser) => {
+            setUser(updatedUser);
+        })
+        .catch(error => console.error('Ошибка обновления аватара:', error));
+    }
+
   return (
     <CurrentUserContext.Provider value={user}>
         <Header
@@ -118,6 +126,7 @@ function App() {
         <AvatarModal
         isEditAvatarModalOpen={isEditAvatarModalOpen}
         setEditAvatarModalOpen={setEditAvatarModalOpen}
+        onUpdateAvatarUser={handleUpdateAvatarUser}
         />
         <QestionModal
         isQestionModalOpen={isQestionModalOpen}
