@@ -84,6 +84,14 @@ function App() {
         .catch(error => console.error('Ошибка удаления:', error));
     }
 
+    const handleCreateCard = (card: Omit<Card, 'id'>) => {
+        api.createCard(card)
+        .then((createdCard) => {
+            setInitialCards((currentCards) => [createdCard, ...currentCards]);
+        })
+        .catch(error => console.error('Ошибка создания карточки:', error));
+    }
+
     const handleUpdateUser = (userId: number, userName: string, userDescription: string) => {
         api.updateUser(userId, userName, userDescription)
         .then((updatedUser) => {
@@ -122,6 +130,7 @@ function App() {
         <PlaceModal
         isEditPlaceModalOpen={isEditPlaceModalOpen}
         setEditPlaceModalOpen={setEditPlaceModalOpen}
+        onCreateCard={handleCreateCard}
         />
         <AvatarModal
         isEditAvatarModalOpen={isEditAvatarModalOpen}

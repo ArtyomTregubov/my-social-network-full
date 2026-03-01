@@ -9,19 +9,6 @@
   ],
   "cards": [
     {
-      "id": "1",
-      "image": "./images/motya_photo.jpg",
-      "description": "Моя фотография",
-      "owner": {
-        "id": 1
-      },
-      "likes": [
-        {
-          "id": 2
-        }
-      ]
-    },
-    {
       "id": "2",
       "image": "./images/motya_photo.jpg",
       "description": "Моя фотография",
@@ -86,6 +73,22 @@
       "likes": [
         {
           "id": 2
+        },
+        {
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": "92e6",
+      "image": "https://i.pinimg.com/736x/a0/5f/e5/a05fe5734f9a310dc6b5fcd5622b0558.jpg",
+      "description": "Бэтман",
+      "owner": {
+        "id": 1
+      },
+      "likes": [
+        {
+          "id": 1
         }
       ]
     }

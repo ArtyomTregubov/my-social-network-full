@@ -63,7 +63,7 @@ export const Modal: FC<ModalProps> = ({
                         <input 
                             type={bottomInputType} 
                             id={bottomInputId}  
-                            value={bottomInputValue}
+                            value={bottomInputValue ? (bottomInputValue ?? '') : undefined}
                             onChange={onBottomInputChange ? (e) => onBottomInputChange(e.target.value) : undefined} 
                             className="form-input" 
                         />

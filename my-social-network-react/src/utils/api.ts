@@ -52,9 +52,17 @@ class Api {
         }).then(res => this._checkResponse<Card>(res));
     }
 
+    public createCard(card: Omit<Card, 'id'>): Promise<Card> {
+        return fetch(`${this._baseUrl}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify(card)
+        }).then(res => this._checkResponse<Card>(res));
+    }
+
     public deleteCard(cardId: number): Promise<void> {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
-            method: 'PATCH',
+            method: 'DELETE',
             headers: this._headers
         }).then(res => this._checkResponse<void>(res));
     }
