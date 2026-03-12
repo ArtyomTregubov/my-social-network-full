@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Main } from "./Main";
 import { ProfileModal } from "./ProfileModal";
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PlaceModal } from "./PlaceModal";
 import { AvatarModal } from "./AvatarModal";
 import { QestionModal } from "./QestionModal";
@@ -10,6 +11,7 @@ import { ImageModal } from "./ImageModal";
 import { CurrentUserContext } from "../contexts/CurrenrtUserContext";
 import type { Card, User } from "../utils/api.types";
 import api from "../utils/api";
+import { Login } from "./Login";
 
 function App() {
     const [initialCards, setInitialCards] = useState<Card[]>([]);
@@ -109,46 +111,56 @@ function App() {
     }
 
   return (
-    <CurrentUserContext.Provider value={user}>
-        <Header
-        handleEditPlaceModalOpen={handleEditPlaceModalOpen}
-        />
-        <Main
-        handleQestionModalOpen={handleQestionModalOpen}
-        gallaryCards={gallaryCards}
-        handleEditProfileModalOpen={handleEditProfileModalOpen}
-        handleEditAvatarModalOpen={handleEditAvatarModalOpen}
-        onCardClick={handleCardClick}
-        onCardLike={handleCardLike}
-        />
-        <Footer />
-        <ProfileModal
-        isEditProfileModalOpen={isEditProfileModalOpen}
-        setEditProfileModalOpen={setEditProfileModalOpen}
-        onUpdateUser={handleUpdateUser}
-        />
-        <PlaceModal
-        isEditPlaceModalOpen={isEditPlaceModalOpen}
-        setEditPlaceModalOpen={setEditPlaceModalOpen}
-        onCreateCard={handleCreateCard}
-        />
-        <AvatarModal
-        isEditAvatarModalOpen={isEditAvatarModalOpen}
-        setEditAvatarModalOpen={setEditAvatarModalOpen}
-        onUpdateAvatarUser={handleUpdateAvatarUser}
-        />
-        <QestionModal
-        isQestionModalOpen={isQestionModalOpen}
-        setQestionModalOpen={setQestionModalOpen}
-        onCardDelete={handleCardDelete}
-        card={cardToDelete}
-        />
-        <ImageModal
-        card={isSelectedCard}
-        isImageModalOpen={isImageModalOpen}
-        setImageModalOpen={setImageModalOpen}
-        />
-    </CurrentUserContext.Provider>
+    <BrowserRouter>
+        <CurrentUserContext.Provider value={user}>
+            <Header
+            handleEditPlaceModalOpen={handleEditPlaceModalOpen}
+            />
+            <Routes>
+                <Route path='/' 
+                       element={
+                           <Main
+                                handleQestionModalOpen={handleQestionModalOpen}
+                                gallaryCards={gallaryCards}
+                                handleEditProfileModalOpen={handleEditProfileModalOpen}
+                                handleEditAvatarModalOpen={handleEditAvatarModalOpen}
+                                onCardClick={handleCardClick}
+                                onCardLike={handleCardLike}
+                            />
+                    }
+               />
+               <Route path='/login' element={<Login />}/>
+               <Route path='/register'/>
+            </Routes>
+            <Footer />
+            <ProfileModal
+            isEditProfileModalOpen={isEditProfileModalOpen}
+            setEditProfileModalOpen={setEditProfileModalOpen}
+            onUpdateUser={handleUpdateUser}
+            />
+            <PlaceModal
+            isEditPlaceModalOpen={isEditPlaceModalOpen}
+            setEditPlaceModalOpen={setEditPlaceModalOpen}
+            onCreateCard={handleCreateCard}
+            />
+            <AvatarModal
+            isEditAvatarModalOpen={isEditAvatarModalOpen}
+            setEditAvatarModalOpen={setEditAvatarModalOpen}
+            onUpdateAvatarUser={handleUpdateAvatarUser}
+            />
+            <QestionModal
+            isQestionModalOpen={isQestionModalOpen}
+            setQestionModalOpen={setQestionModalOpen}
+            onCardDelete={handleCardDelete}
+            card={cardToDelete}
+            />
+            <ImageModal
+            card={isSelectedCard}
+            isImageModalOpen={isImageModalOpen}
+            setImageModalOpen={setImageModalOpen}
+            />
+        </CurrentUserContext.Provider>
+    </BrowserRouter>
   )
 }
 
