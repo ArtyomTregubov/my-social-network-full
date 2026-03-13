@@ -1,41 +1,47 @@
-import type { FC } from "react";
-import { Modal } from "./Modal"
-import type { Card } from "../utils/api.types";
+import type { FC } from 'react';
+import type { Card } from '../utils/api.types';
+import { Modal } from './Modal';
 
 type QestionModalProps = {
-    isQestionModalOpen: boolean;
-    setQestionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    onCardDelete: (card: Card) => void;
-    card: Card | null;
-}
+  isQestionModalOpen: boolean;
+  setQestionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onCardDelete: (card: Card) => void;
+  card: Card | null;
+};
 
-export const QestionModal: FC<QestionModalProps> = ({card, onCardDelete, isQestionModalOpen, setQestionModalOpen}) => {
-    const handleQestionModalClose = () => {
-        setQestionModalOpen(false);
+export const QestionModal: FC<QestionModalProps> = ({
+  card,
+  onCardDelete,
+  isQestionModalOpen,
+  setQestionModalOpen,
+}) => {
+  const handleQestionModalClose = () => {
+    setQestionModalOpen(false);
+  };
+
+  const handleDeleteClick = () => {
+    if (card) {
+      onCardDelete(card);
     }
 
-    const handleDeleteClick = () => {
-        if (card) {
-            onCardDelete(card);
-        }
-        handleQestionModalClose();
-    }
+    handleQestionModalClose();
+  };
 
-    return (
-        <Modal
-        title={'Вы уверены?'}
-        topInputLabel={'disabled'}
-        topInputType={'disabled'}
-        topInputId={undefined}
-        bottomInputLabel={'disabled'}
-        bottomInputType={'disabled'}
-        bottomInputId={undefined}
-        modalState={isQestionModalOpen}
-        closeFunction={handleQestionModalClose}
-        leftButton={'Да'} 
-        rightButton={'Нет'}
-        actionFunction={handleDeleteClick}
-        typeOfModal={'button'}
-        />
-    )
-}
+  return (
+    <Modal
+      title={'Вы уверены?'}
+      topInputLabel={'disabled'}
+      topInputType={'disabled'}
+      topInputId={undefined}
+      bottomInputLabel={'disabled'}
+      bottomInputType={'disabled'}
+      bottomInputId={undefined}
+      modalState={isQestionModalOpen}
+      closeFunction={handleQestionModalClose}
+      leftButton={'Да'}
+      rightButton={'Нет'}
+      actionFunction={handleDeleteClick}
+      typeOfModal={'button'}
+    />
+  );
+};

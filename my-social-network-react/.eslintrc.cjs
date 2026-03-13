@@ -1,0 +1,73 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.app.json', './tsconfig.node.json'],
+    sourceType: 'module',
+  },
+  plugins: ['simple-import-sort', 'import', '@typescript-eslint/eslint-plugin'],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
+  root: true,
+  env: {
+    node: true,
+    jest: true,
+  },
+  ignorePatterns: ['.eslintrc.js', 'node_modules/'],
+  rules: {
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          [
+            '^react',
+            '^\\w',
+            '@\\w',
+            '^\\u0000',
+            '^#(/.*|$)',
+            '^#app(/.*|$)',
+            '^#pages(/.*|$)',
+            '^#widgets(/.*|$)',
+            '^#features(/.*|$)',
+            '^#entities(/.*|$)',
+            '^#shared(/.*|$)',
+            '^../',
+            '^./',
+          ],
+        ],
+      },
+    ],
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-duplicate-enum-values': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-empty-function': ['error', { allow: ['methods', 'asyncMethods'] }],
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: 'directive', next: '*' },
+      { blankLine: 'any', prev: 'directive', next: 'directive' },
+      { blankLine: 'always', prev: 'import', next: '*' },
+      { blankLine: 'any', prev: 'import', next: 'import' },
+      { blankLine: 'always', prev: '*', next: ['const', 'let', 'var'] },
+      { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+      {
+        blankLine: 'any',
+        prev: ['const', 'let', 'var'],
+        next: ['const', 'let', 'var'],
+      },
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: ['class', 'if', 'while', 'switch', 'try'],
+      },
+      {
+        blankLine: 'always',
+        prev: ['class', 'if', 'while', 'switch', 'try'],
+        next: '*',
+      },
+      { blankLine: 'always', prev: '*', next: 'return' },
+    ],
+  },
+};
