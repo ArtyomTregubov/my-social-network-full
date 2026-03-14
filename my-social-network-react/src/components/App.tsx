@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
 import api from '../utils/api';
 import type { Card, User } from '../utils/api.types';
+import { Login } from './Auth/Login';
+import { Register } from './Auth/Register';
 import { AvatarModal } from './AvatarModal';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { ImageModal } from './ImageModal';
-import { Login } from './Login';
 import { Main } from './Main';
 import { PlaceModal } from './PlaceModal';
 import { ProfileModal } from './ProfileModal';
@@ -137,7 +138,7 @@ function App() {
             }
           />
           <Route path='/login' element={<Login />} />
-          <Route path='/register' />
+          <Route path='/register' element={<Register />} />
         </Routes>
         <Footer />
         <ProfileModal
