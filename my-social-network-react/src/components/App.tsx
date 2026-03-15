@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
 import api from '../utils/api';
 import type { Card, User } from '../utils/api.types';
@@ -15,6 +15,7 @@ import { ProfileModal } from './ProfileModal';
 import { QestionModal } from './QestionModal';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [initialCards, setInitialCards] = useState<Card[]>([]);
   const [cardToDelete, setCardToDelete] = useState<Card | null>(null);
   const [isSelectedCard, setSelectedCard] = useState<Card | null>(null);
@@ -124,8 +125,9 @@ function App() {
       <CurrentUserContext.Provider value={user}>
         <Header handleEditPlaceModalOpen={handleEditPlaceModalOpen} />
         <Routes>
+          <Route path='/' element={loggedIn ? <Navigate to='/main' /> : <Navigate to='/Login' />} />
           <Route
-            path='/'
+            path='/main'
             element={
               <Main
                 handleQestionModalOpen={handleQestionModalOpen}
