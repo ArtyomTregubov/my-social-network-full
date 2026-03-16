@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
 import api from '../utils/api';
 import type { Card, User } from '../utils/api.types';
 import { Login } from './Auth/Login';
+import ProtectedRouteElement from './Auth/ProtectedRoute';
 import { Register } from './Auth/Register';
 import { AvatarModal } from './AvatarModal';
 import { Footer } from './Footer';
@@ -129,13 +130,18 @@ function App() {
           <Route
             path='/main'
             element={
-              <Main
-                handleQestionModalOpen={handleQestionModalOpen}
-                gallaryCards={gallaryCards}
-                handleEditProfileModalOpen={handleEditProfileModalOpen}
-                handleEditAvatarModalOpen={handleEditAvatarModalOpen}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
+              <ProtectedRouteElement
+                loggedIn={loggedIn}
+                element={
+                  <Main
+                    handleQestionModalOpen={handleQestionModalOpen}
+                    gallaryCards={gallaryCards}
+                    handleEditProfileModalOpen={handleEditProfileModalOpen}
+                    handleEditAvatarModalOpen={handleEditAvatarModalOpen}
+                    onCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
+                  />
+                }
               />
             }
           />

@@ -1,9 +1,43 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { register } from './Auth';
 import { AuthForm } from './AuthForm';
 import { StyledAuthContainer, StyledAuthSection, StyledAuthTitle, StyledLinkContainer } from './AuthForm.styled';
 
+interface FormValues {
+  login: string;
+  password: string;
+}
+
 export const Register = () => {
+  const [formValue, setFormValue] = useState<FormValues>({
+    login: '',
+    password: '',
+  });
+  const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    if (formValue.password) {
+      const { password, login } = formValue;
+
+      register(password, login).then((res) => {
+        navigate('/login', { replace: true });
+      });
+    }
+  };
+
   return (
     <StyledAuthSection>
       <StyledAuthContainer>

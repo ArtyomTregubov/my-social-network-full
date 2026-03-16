@@ -19,7 +19,7 @@ export const AuthForm = () => {
       >
         <TextField
           {...register('login')}
-          type='text'
+          type='email'
           id='login'
           value=''
           sx={{
