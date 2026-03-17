@@ -2,13 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import { register } from './Auth';
+import type { FormValues } from './Auth.types';
 import { AuthForm } from './AuthForm';
 import { StyledAuthContainer, StyledAuthSection, StyledAuthTitle, StyledLinkContainer } from './AuthForm.styled';
-
-interface FormValues {
-  login: string;
-  password: string;
-}
 
 export const Register = () => {
   const [formValue, setFormValue] = useState<FormValues>({
