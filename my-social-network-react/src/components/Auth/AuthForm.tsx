@@ -1,12 +1,15 @@
+import type { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Stack, TextField } from '@mui/material';
+import type { FormValues } from './Auth.types';
 
-export const AuthForm = () => {
-  const { register, handleSubmit } = useForm();
+interface AuthFormProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (data: FormValues) => void;
+}
 
-  const onSubmit = () => {
-    alert('Зарегался Бро');
-  };
+export const AuthForm: FC<AuthFormProps> = ({ onChange, onSubmit }) => {
+  const { register, handleSubmit } = useForm<FormValues>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='modal-form' id='profileForm' noValidate>
@@ -19,6 +22,7 @@ export const AuthForm = () => {
       >
         <TextField
           {...register('login')}
+          onChange={onChange}
           type='email'
           id='login'
           value=''
@@ -52,6 +56,7 @@ export const AuthForm = () => {
       >
         <TextField
           {...register('password')}
+          onChange={onChange}
           type='text'
           id='password'
           value=''

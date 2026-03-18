@@ -22,9 +22,7 @@ export const Login = () => {
     });
   };
 
-  const handleSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = (formValue: FormValues) => {
     if (!formValue.login || !formValue.password) {
       return;
     }
@@ -43,7 +41,7 @@ export const Login = () => {
     <StyledAuthSection>
       <StyledAuthContainer>
         <StyledAuthTitle>Авторизация</StyledAuthTitle>
-        <AuthForm />
+        <AuthForm onSubmit={handleSubmit} onChange={handleChange} />
       </StyledAuthContainer>
       <StyledLinkContainer>
         <Typography>Нет аккаунта?</Typography>

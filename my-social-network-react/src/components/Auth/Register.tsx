@@ -22,13 +22,9 @@ export const Register = () => {
     });
   };
 
-  const handleSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = (formValue: FormValues) => {
     if (formValue.password) {
-      const { password, login } = formValue;
-
-      register(password, login).then((res) => {
+      register(formValue.password, formValue.login).then((res) => {
         navigate('/login', { replace: true });
       });
     }
@@ -38,7 +34,7 @@ export const Register = () => {
     <StyledAuthSection>
       <StyledAuthContainer>
         <StyledAuthTitle>Регистрация</StyledAuthTitle>
-        <AuthForm />
+        <AuthForm onSubmit={handleSubmit} onChange={handleChange} />
       </StyledAuthContainer>
       <StyledLinkContainer>
         <Typography>Есть аккаунт?</Typography>
