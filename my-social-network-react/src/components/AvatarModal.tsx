@@ -1,40 +1,32 @@
-import { type FC, useContext, useRef } from 'react';
-import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
+import { useRef } from 'react';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 
-type AvatarModalProps = {
-  isEditAvatarModalOpen: boolean;
-  setEditAvatarModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onUpdateAvatarUser: (userId: number, userAvatar: string) => void;
-};
-
-export const AvatarModal: FC<AvatarModalProps> = ({
-  isEditAvatarModalOpen,
-  setEditAvatarModalOpen,
-  onUpdateAvatarUser,
-}) => {
-  const currentUser = useContext(CurrentUserContext);
+export const AvatarModal = observer(() => {
+  const { userStore } = useStore();
   const avatarRef = useRef<HTMLInputElement>(null);
-  const handleEditAvatarModalClose = () => {
-    setEditAvatarModalOpen(false);
+
+  const handleUpdateAvatarUser = (userId: string, userAvatar: string) => {
+    userStore.updateAvatarUser(userId, userAvatar);
   };
 
   const handleUserAvatarSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (currentUser && avatarRef.current) {
+    if (userStore.currentUser && avatarRef.current) {
       const avatar = avatarRef.current.value;
 
       if (avatar) {
-        onUpdateAvatarUser(currentUser.id, avatar);
-        setEditAvatarModalOpen(false);
+        handleUpdateAvatarUser(userStore.currentUser.id, avatar);
+        userStore.setIsEditAvatarModalOpen(false);
       }
     }
   };
 
   return (
-    <div className={isEditAvatarModalOpen ? 'modal-open' : 'modal'}>
+    <div className={userStore.isEditAvatarModalOpen ? 'modal-open' : 'modal'}>
       <div className='modal-content'>
-        <span onClick={handleEditAvatarModalClose} className='close-button' id='closeModalBtn'>
+        <span onClick={() => userStore.setIsEditAvatarModalOpen(false)} className='close-button' id='closeModalBtn'>
           &times;
         </span>
         <h2 className='modal-title'>Сменить аватар?</h2>
@@ -52,4 +44,4 @@ export const AvatarModal: FC<AvatarModalProps> = ({
       </div>
     </div>
   );
-};
+});

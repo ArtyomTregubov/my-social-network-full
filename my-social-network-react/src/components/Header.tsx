@@ -1,11 +1,8 @@
-import type { FC } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useStore } from '../hooks/UseStore';
 
-type HeaderModalProps = {
-  handleEditPlaceModalOpen: () => void;
-};
-
-export const Header: FC<HeaderModalProps> = ({ handleEditPlaceModalOpen }) => {
+export const Header = () => {
+  const { cardStore } = useStore();
   const location = useLocation();
   const isMain = location.pathname === '/';
 
@@ -13,7 +10,7 @@ export const Header: FC<HeaderModalProps> = ({ handleEditPlaceModalOpen }) => {
     <header className='header'>
       <h1 className='logo'>mySocialApp</h1>
       {isMain && (
-        <button onClick={handleEditPlaceModalOpen} className='add-button' id='openModalBtn'>
+        <button onClick={() => cardStore.setAddCardModalOpen(true)} className='add-button' id='openModalBtn'>
           <i className='fas fa-plus'></i>
         </button>
       )}

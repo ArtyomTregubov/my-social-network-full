@@ -38,7 +38,7 @@ export const Modal: FC<ModalProps> = ({
   leftButton,
   rightButton,
   onTopInputChange,
-  onBottomInputChange,
+  onBottomInputChange
 }) => {
   return (
     <div className={modalState ? 'modal-open' : 'modal'}>

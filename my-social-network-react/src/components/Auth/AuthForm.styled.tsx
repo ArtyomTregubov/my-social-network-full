@@ -8,7 +8,7 @@ export const StyledAuthSection = styled(Stack)({
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0, auto',
-  padding: '2rem',
+  padding: '2rem'
 });
 
 export const StyledAuthContainer = styled(Stack)({
@@ -18,17 +18,17 @@ export const StyledAuthContainer = styled(Stack)({
   width: '100%',
   maxWidth: '500px',
   position: 'relative',
-  boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
+  boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)'
 });
 
 export const StyledAuthTitle = styled(Typography)({
   fontSize: '1.5rem',
   marginBottom: '1.5rem',
-  color: '#212529',
+  color: '#212529'
 });
 
 export const StyledLinkContainer = styled(Box)({
   margin: '10px',
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'space-between'
 });

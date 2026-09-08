@@ -1,31 +1,9 @@
-import type { FC } from 'react';
-import type { Card } from '../utils/api.types';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 import { Modal } from './Modal';
 
-type QestionModalProps = {
-  isQestionModalOpen: boolean;
-  setQestionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onCardDelete: (card: Card) => void;
-  card: Card | null;
-};
-
-export const QestionModal: FC<QestionModalProps> = ({
-  card,
-  onCardDelete,
-  isQestionModalOpen,
-  setQestionModalOpen,
-}) => {
-  const handleQestionModalClose = () => {
-    setQestionModalOpen(false);
-  };
-
-  const handleDeleteClick = () => {
-    if (card) {
-      onCardDelete(card);
-    }
-
-    handleQestionModalClose();
-  };
+export const QestionModal = observer(() => {
+  const { cardStore } = useStore();
 
   return (
     <Modal
@@ -36,12 +14,12 @@ export const QestionModal: FC<QestionModalProps> = ({
       bottomInputLabel={'disabled'}
       bottomInputType={'disabled'}
       bottomInputId={undefined}
-      modalState={isQestionModalOpen}
-      closeFunction={handleQestionModalClose}
+      modalState={cardStore.isQestionModalOpen}
+      closeFunction={() => cardStore.setQestionModalOpen(false)}
       leftButton={'Да'}
       rightButton={'Нет'}
-      actionFunction={handleDeleteClick}
+      actionFunction={cardStore.handleCardDelete}
       typeOfModal={'button'}
     />
   );
-};
+});

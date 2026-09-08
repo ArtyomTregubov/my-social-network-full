@@ -1,19 +1,15 @@
-import { type FC, useState } from 'react';
-import type { Card } from '../utils/api.types';
+import { useState } from 'react';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 import { Modal } from './Modal';
 
-type PlaceModalProps = {
-  isEditPlaceModalOpen: boolean;
-  setEditPlaceModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onCreateCard: (card: Omit<Card, 'id'>) => void;
-};
-
-export const PlaceModal: FC<PlaceModalProps> = ({ isEditPlaceModalOpen, setEditPlaceModalOpen, onCreateCard }) => {
+export const PlaceModal = observer(() => {
+  const { cardStore } = useStore();
   const [placeDescription, setPlaceDescription] = useState<string>('');
   const [placeLink, setPlaceLink] = useState<string>('');
 
   const handleEditPlaceModalClose = () => {
-    setEditPlaceModalOpen(false);
+    cardStore.setAddCardModalOpen(false);
     setPlaceDescription('');
     setPlaceLink('');
   };
@@ -22,11 +18,11 @@ export const PlaceModal: FC<PlaceModalProps> = ({ isEditPlaceModalOpen, setEditP
     e.preventDefault();
 
     if (placeDescription && placeLink) {
-      onCreateCard({
+      cardStore.createCard({
         image: placeLink,
         description: placeDescription,
-        owner: { id: 1 },
-        likes: [],
+        owner: { id: '1' },
+        likes: []
       });
     }
 
@@ -42,7 +38,7 @@ export const PlaceModal: FC<PlaceModalProps> = ({ isEditPlaceModalOpen, setEditP
       bottomInputLabel={'Ссылка'}
       bottomInputType={'url'}
       bottomInputId={'urlInput'}
-      modalState={isEditPlaceModalOpen}
+      modalState={cardStore.isAddCardModalOpen}
       closeFunction={handleEditPlaceModalClose}
       leftButton={'Сохранить'}
       rightButton={undefined}
@@ -54,4 +50,4 @@ export const PlaceModal: FC<PlaceModalProps> = ({ isEditPlaceModalOpen, setEditP
       bottomInputValue={placeLink}
     />
   );
-};
+});

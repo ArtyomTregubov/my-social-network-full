@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { AuthForm } from './AuthForm';
 import { StyledAuthContainer, StyledAuthSection, StyledAuthTitle, StyledLinkContainer } from './AuthForm.styled';
 

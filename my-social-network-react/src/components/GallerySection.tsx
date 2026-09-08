@@ -1,29 +1,18 @@
-import type { FC } from 'react';
-import type { Card } from '../utils/api.types';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 import { ImageCard } from './ImageCard';
 
-type GallerySectionMainProps = {
-  handleQestionModalOpen: (card: Card) => void;
-  gallaryCards: Card[];
-  onCardClick: (card: Card) => void;
-  onCardLike: (card: Card) => void;
-};
+export const GallerySection = observer(() => {
+  const { cardStore } = useStore();
 
-export const GallerySection: FC<GallerySectionMainProps> = ({
-  gallaryCards,
-  handleQestionModalOpen,
-  onCardClick,
-  onCardLike,
-}) => {
   return (
     <section className='gallery-section'>
       <h3 className='gallery-title'>Мои фотографии</h3>
       <div className='gallery-grid'>
-        {gallaryCards.map((card) => (
+        {cardStore.cards.map((card) => (
           <ImageCard
-            onCardClick={onCardClick}
-            onCardLike={onCardLike}
-            handleQestionModalOpen={() => handleQestionModalOpen(card)}
+            onCardClick={() => cardStore.handleCardClick(card)}
+            handleQestionDeleteCardModalOpen={() => cardStore.handleQestionDeleteCardModalOpen(card)}
             card={card}
             key={card.id}
           />
@@ -31,4 +20,4 @@ export const GallerySection: FC<GallerySectionMainProps> = ({
       </div>
     </section>
   );
-};
+});

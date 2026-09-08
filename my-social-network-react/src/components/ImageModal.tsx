@@ -1,19 +1,11 @@
-import type { FC } from 'react';
-import type { Card } from '../utils/api.types';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 
-export type ImageModalProps = {
-  card: Card | null;
-  isImageModalOpen: boolean;
-  setImageModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isImageModalOpen }) => {
-  const handleImageModalClose = () => {
-    setImageModalOpen(false);
-  };
+export const ImageModal = observer(() => {
+  const { cardStore } = useStore();
 
   return (
-    <div className={card && isImageModalOpen ? 'modal-open' : 'modal'}>
+    <div className={cardStore.selectedCard && cardStore.isImageCardModalOpen ? 'modal-open' : 'modal'}>
       <div
         className='modal-content-image'
         style={{
@@ -22,18 +14,18 @@ export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isIma
           justifyContent: 'space-between',
           color: 'fff',
           borderRadius: '12px',
-          backgroundImage: `url(${card?.image})`,
+          backgroundImage: `url(${cardStore.selectedCard?.image})`,
           backgroundSize: 'cover',
           position: 'relative',
           boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
           height: '100%',
           maxHeight: '800px',
           width: '100%',
-          maxWidth: '600px',
+          maxWidth: '600px'
         }}
       >
         <span
-          onClick={handleImageModalClose}
+          onClick={() => cardStore.setImageCardModalOpen(false)}
           className='close-button-image'
           style={{
             position: 'absolute',
@@ -42,7 +34,7 @@ export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isIma
             fontSize: '1.5rem',
             color: '#fff',
             cursor: 'pointer',
-            transition: 'all 0.3s ease',
+            transition: 'all 0.3s ease'
           }}
         >
           &times;
@@ -51,7 +43,7 @@ export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isIma
           style={{
             background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
             padding: '12px',
-            borderRadius: '12px 12px 0 0',
+            borderRadius: '12px 12px 0 0'
           }}
         >
           <h2
@@ -59,7 +51,7 @@ export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isIma
               color: '#fff',
               fontSize: '24px',
               fontWeight: 'bold',
-              transition: 'all 0.3s ease',
+              transition: 'all 0.3s ease'
             }}
           >
             Картинка
@@ -69,17 +61,17 @@ export const ImageModal: FC<ImageModalProps> = ({ card, setImageModalOpen, isIma
           style={{
             background: 'linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)',
             padding: '12px',
-            borderRadius: '0 0 12px 12px',
+            borderRadius: '0 0 12px 12px'
           }}
         >
           <p
             className='modal-description-image'
             style={{ color: '#fff', fontSize: '16px', transition: 'all 0.3s ease' }}
           >
-            {card?.description}
+            {cardStore.selectedCard?.description}
           </p>
         </div>
       </div>
     </div>
   );
-};
+});

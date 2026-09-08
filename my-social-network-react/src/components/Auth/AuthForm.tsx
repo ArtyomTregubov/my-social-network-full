@@ -1,5 +1,5 @@
-import { useForm } from 'react-hook-form';
 import { Button, Stack, TextField } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
 export const AuthForm = () => {
   const { register, handleSubmit } = useForm();
@@ -14,7 +14,7 @@ export const AuthForm = () => {
         sx={{
           gap: '0.5rem',
           fontWeight: '600',
-          color: '0 5px 15px rgba(0, 0, 0, 0.2)',
+          color: '0 5px 15px rgba(0, 0, 0, 0.2)'
         }}
       >
         <TextField
@@ -25,8 +25,8 @@ export const AuthForm = () => {
           sx={{
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                border: 'none',
-              },
+                border: 'none'
+              }
             },
             '& input': {
               padding: '10px 14px',
@@ -36,9 +36,9 @@ export const AuthForm = () => {
               transition: 'all 0.3s ease',
               '&:focus': {
                 borderColor: '#1976d2',
-                outline: 'none',
-              },
-            },
+                outline: 'none'
+              }
+            }
           }}
           required
         />
@@ -47,7 +47,7 @@ export const AuthForm = () => {
         sx={{
           gap: '0.5rem',
           fontWeight: '600',
-          color: '0 5px 15px rgba(0, 0, 0, 0.2)',
+          color: '0 5px 15px rgba(0, 0, 0, 0.2)'
         }}
       >
         <TextField
@@ -58,8 +58,8 @@ export const AuthForm = () => {
           sx={{
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
-                border: 'none',
-              },
+                border: 'none'
+              }
             },
             '& input': {
               padding: '10px 14px',
@@ -69,9 +69,9 @@ export const AuthForm = () => {
               transition: 'all 0.3s ease',
               '&:focus': {
                 borderColor: '#1976d2',
-                outline: 'none',
-              },
-            },
+                outline: 'none'
+              }
+            }
           }}
           required
         />
@@ -90,7 +90,7 @@ export const AuthForm = () => {
             fontSize: '1rem',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            marginTop: '0.5rem',
+            marginTop: '0.5rem'
           }}
         >
           Войти

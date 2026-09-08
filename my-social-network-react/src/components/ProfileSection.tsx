@@ -1,18 +1,19 @@
-import { type FC, useContext } from 'react';
-import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 
-type ProfileSectionProps = {
-  handleEditProfileModalOpen: () => void;
-  handleEditAvatarModalOpen: () => void;
-};
-
-export const ProfileSection: FC<ProfileSectionProps> = ({ handleEditProfileModalOpen, handleEditAvatarModalOpen }) => {
-  const user = useContext(CurrentUserContext);
+export const ProfileSection = observer(() => {
+  const { userStore } = useStore();
+  const user = userStore.currentUser;
 
   return (
     <section className='profile-section'>
       <div className='profile-picture-container'>
-        <img onClick={handleEditAvatarModalOpen} src={user?.userAvatar} alt='Profile' className='profile-picture' />
+        <img
+          onClick={() => userStore.setIsEditAvatarModalOpen(true)}
+          src={user?.userAvatar}
+          alt='Profile'
+          className='profile-picture'
+        />
       </div>
       <div className='profile-info'>
         <h2 className='profile-name' id='profileName'>
@@ -21,10 +22,10 @@ export const ProfileSection: FC<ProfileSectionProps> = ({ handleEditProfileModal
         <p className='profile-bio' id='profileBio'>
           {user?.userDescription}
         </p>
-        <button onClick={handleEditProfileModalOpen} className='edit-button' id='editProfileBtn'>
+        <button onClick={() => userStore.setIsEditProfileModalOpen(true)} className='edit-button' id='editProfileBtn'>
           Редактировать профиль
         </button>
       </div>
     </section>
   );
-};
+});

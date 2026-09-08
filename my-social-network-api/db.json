@@ -4,49 +4,23 @@
       "id": "1",
       "userName": "Мотя",
       "userDescription": "Дзюдоист",
-      "userAvatar": "https://img.freepik.com/premium-photo/minimal-batman-silhouette-wallpaper-with-red-background_899449-543502.jpg?semt=ais_hybrid&w=740"
+      "userAvatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0uQU0kLxXQmWINRHuoJH0My89QzSBL3V0kwy86GJ8wg&s=10"
     }
   ],
   "cards": [
-    {
-      "id": "2",
-      "image": "./images/motya_photo.jpg",
-      "description": "Моя фотография",
-      "owner": {
-        "id": 1
-      },
-      "likes": [
-        {
-          "id": 2
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "image": "./images/motya_photo.jpg",
-      "description": "Моя фотография",
-      "owner": {
-        "id": 1
-      },
-      "likes": [
-        {
-          "id": 2
-        }
-      ]
-    },
     {
       "id": "4",
       "image": "./images/motya_photo.jpg",
       "description": "Моя фотография",
       "owner": {
-        "id": 1
+        "id": "1"
       },
       "likes": [
         {
-          "id": 2
+          "id": "2"
         },
         {
-          "id": 1
+          "id": "1"
         }
       ]
     },
@@ -55,11 +29,11 @@
       "image": "./images/motya_photo.jpg",
       "description": "Моя фотография",
       "owner": {
-        "id": 1
+        "id": "1"
       },
       "likes": [
         {
-          "id": 2
+          "id": "2"
         }
       ]
     },
@@ -68,14 +42,11 @@
       "image": "./images/motya_photo.jpg",
       "description": "Моя фотография",
       "owner": {
-        "id": 1
+        "id": "1"
       },
       "likes": [
         {
-          "id": 2
-        },
-        {
-          "id": 1
+          "id": "2"
         }
       ]
     },
@@ -84,13 +55,26 @@
       "image": "https://i.pinimg.com/736x/a0/5f/e5/a05fe5734f9a310dc6b5fcd5622b0558.jpg",
       "description": "Бэтман",
       "owner": {
-        "id": 1
+        "id": "1"
       },
       "likes": [
         {
-          "id": 1
+          "id": "1"
         }
       ]
+    },
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnUpr3dCirRWnTzCFsRndGXAuYYe_dK6tsH96yNow-wQ&s=10",
+      "description": "Дзюбики",
+      "owner": {
+        "id": "1"
+      },
+      "likes": [
+        {
+          "id": "1"
+        }
+      ],
+      "id": "zFK0vSh"
     }
   ]
 }

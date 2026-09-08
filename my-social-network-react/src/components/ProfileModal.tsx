@@ -1,37 +1,33 @@
-import { type FC, useContext, useEffect, useState } from 'react';
-import { CurrentUserContext } from '../contexts/CurrenrtUserContext';
+import { useEffect, useState } from 'react';
+import { observer } from 'mobx-react';
+import { useStore } from '../hooks/UseStore';
 import { Modal } from './Modal';
 
-type ProfileModalProps = {
-  isEditProfileModalOpen: boolean;
-  setEditProfileModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onUpdateUser: (user: number, userName: string, userDescription: string) => void;
-};
-
-export const ProfileModal: FC<ProfileModalProps> = ({
-  onUpdateUser,
-  isEditProfileModalOpen,
-  setEditProfileModalOpen,
-}) => {
+export const ProfileModal = observer(() => {
   const [name, setName] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState<string | undefined>(undefined);
-  const currentUser = useContext(CurrentUserContext);
+  const { userStore } = useStore();
+  const currentUser = userStore.currentUser;
 
   useEffect(() => {
     setName(currentUser?.userName);
     setDescription(currentUser?.userDescription);
-  }, [isEditProfileModalOpen, currentUser?.userName, currentUser?.userDescription]);
+  }, [userStore.isEditProfileModalOpen, currentUser?.userName, currentUser?.userDescription]);
 
   const handleEditProfileModalClose = () => {
-    setEditProfileModalOpen(false);
+    userStore.setIsEditProfileModalOpen(false);
+  };
+
+  const handleUpdateUser = (userId: string, userName: string, userDescription: string) => {
+    userStore.updateUser(userId, userName, userDescription);
   };
 
   const handleUserDataSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (currentUser && name && description) {
-      onUpdateUser(currentUser.id, name, description);
-      setEditProfileModalOpen(false);
+      handleUpdateUser(currentUser.id, name, description);
+      userStore.setIsEditProfileModalOpen(false);
     }
   };
 
@@ -44,7 +40,7 @@ export const ProfileModal: FC<ProfileModalProps> = ({
       bottomInputLabel={'Занятие'}
       bottomInputType={'text'}
       bottomInputId={'bioInput'}
-      modalState={isEditProfileModalOpen}
+      modalState={userStore.isEditProfileModalOpen}
       closeFunction={handleEditProfileModalClose}
       leftButton={'Сохранить'}
       rightButton={undefined}
@@ -56,4 +52,4 @@ export const ProfileModal: FC<ProfileModalProps> = ({
       onBottomInputChange={setDescription}
     />
   );
-};
+});
